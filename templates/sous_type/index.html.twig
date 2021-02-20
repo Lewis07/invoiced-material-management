@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste sous-type{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h3 class="text-center mt-3">Liste des sous-types</h3>
+        <a href="{{ path('sous_type_new') }}" class="btn btn-primary mb-2">Nouveau sous-type</a>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Description</th>
+                    <th>Type</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for sous_type in sous_types %}
+                <tr>
+                    <td>{{ sous_type.descrSousType }}</td>
+                    <td>{{ sous_type.type.descrType }}</td>
+                    <td>
+                        <a href="{{ path('sous_type_edit', {'id': sous_type.id}) }}" class="btn btn-info">Editer</a>
+                        <a href="{{ path('sous_type_delete', {'id': sous_type.id}) }}" class="btn btn-danger">Supprimer</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr align="center">
+                    <td colspan="2">Aucun sous-type</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

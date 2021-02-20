@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste type{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h3 class="text-center mt-3">Liste des types</h3>
+        <a href="{{ path('type_new') }}" class="btn btn-primary mb-2">Nouveau type</a>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Description</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for type in types %}
+                <tr>
+                    <td>{{ type.descrType }}</td>
+                    <td>
+                        <a href="{{ path('type_edit', {'id': type.id}) }}" class="btn btn-info">Editer</a>
+                        <a href="{{ path('type_delete', {'id': type.id}) }}" class="btn btn-danger">Supprimer</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr align="center">
+                    <td colspan="2">Aucun type</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des départements{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h3 class="text-center mt-3">Liste des départements</h3>
+        <a href="{{ path('departement_new') }}" class="btn btn-primary mb-2">Nouveau département</a>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Lieu</th>
+                    <th>Contact</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for departement in departements %}
+                    <tr>
+                        <td>{{ departement.nomDepartement }}</td>
+                        <td>{{ departement.lieu }}</td>
+                        <td>{{ departement.contactDept }}</td>
+                        <td>
+                            <a href="{{ path('departement_edit', {'id': departement.id}) }}" class="btn btn-info">Editer</a>
+                            <a href="{{ path('departement_delete', {'id': departement.id}) }}" class="btn btn-danger">Supprimer</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr align="center">
+                        <td colspan="4">Aucun département</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

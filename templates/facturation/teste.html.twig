@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link  rel="stylesheet" href="http://localhost:8000/css/style.css">
+    <title>teste</title>
+</head>
+<body>
+    {% for facture in factures %}
+            <div class="facturation">
+                <div class="facturation__client">
+                    <span>Nom du client : {{ facture.nom_cli }} {{ facture.prenom_cli }}</span>
+                    <span>Addresse : {{ facture.addresse_cli }}</span>
+                </div>
+                <div class="facturation__info">
+                    <span>Facture n°{{ facture.id }}</span>
+                    <span>Date : {{ facture.date_facture | date('d/m/Y') }}</span>
+                    <span>Nom du département :  {{ facture.nom_departement }}</span>
+                </div>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="text-center">Quantité</th>
+                        <th class="text-center">Description</th>
+                        <th class="text-center">Prix unitaire</th>
+                        <th class="text-center">Prix total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-center">{{ facture.qte }}</td>
+                        <td class="text-center">{{ facture.descr_type }}</td>
+                        <td class="text-center">{{ facture.prix_unitaire }}</td>
+                        <td class="text-center">{{ facture.qte * facture.prix_unitaire }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        {% endfor %}
+</body>
+</html>

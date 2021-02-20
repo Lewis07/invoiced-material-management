@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MaterielSortie{% endblock %}
+
+{% block body %}
+    <h1>MaterielSortie</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ materiel_sortie.id }}</td>
+            </tr>
+            <tr>
+                <th>QteSortie</th>
+                <td>{{ materiel_sortie.qteSortie }}</td>
+            </tr>
+            <tr>
+                <th>DateSortie</th>
+                <td>{{ materiel_sortie.dateSortie ? materiel_sortie.dateSortie|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('materiel_sortie_index') }}">back to list</a>
+
+    <a href="{{ path('materiel_sortie_edit', {'id': materiel_sortie.id}) }}">edit</a>
+
+    {{ include('materiel_sortie/_delete_form.html.twig') }}
+{% endblock %}

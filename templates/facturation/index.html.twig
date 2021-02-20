@@ -1,0 +1,89 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Facturation
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		{{ form_start(form) }}
+		<div class="row mt-3">
+			<div class="col-sm-3">
+				{{ form_row(form.client) }}
+			</div>
+			<div class="col-sm-2">
+				{{ form_row(form.materiel) }}
+			</div>
+			<div class="col-sm-2">
+				{{ form_row(form.dateFacture) }}
+			</div>
+			<div class="col-sm-3">
+				<br>
+				<button type="submit" class="btn btn-primary mt-2">Rechercher</button>
+			</div>
+		</div>
+		{{ form_end(form) }}
+		{# <pre>
+		        {{ dump() }}
+		    </pre> #}
+		{# {{ url() }} #}
+				{# <div class="facturation"> <div class="facturation__client">
+					<span>Nom du client :
+						{{ facture.client.fullName }}</span>
+					<span>Addresse :
+						{{ facture.client.addresseCli }}</span>
+				</div>
+				<div class="facturation__info">
+					<span>Facture n°{{ facture.client.id }}</span>
+					<span>Date :
+						{{ facture.dateFacture | date('d/m/Y') }}</span>
+					<span>Nom du département :
+						{{ facture.materiel.departement.nomDepartement }}</span>
+				</div>
+			</div> #}
+			<table class="table">
+				<thead>
+					<tr>
+						<th class="text-center">Quantité</th>
+						<th class="text-center">Description</th>
+						<th class="text-center">Prix unitaire</th>
+						<th class="text-center">Matériel</th>
+						<th class="text-center">Prix total</th>
+					</tr>
+				</thead>
+				<tbody>
+			        {% for facture in factures %}
+                        {% if facture %}
+                            <tr>
+                                <td class="text-center">{{ facture.materiel.qte }}</td>
+                                <td class="text-center">{{ facture.materiel.sousType.type.descrType }}</td>
+                                <td class="text-center">{{ facture.materiel.prixUnitaire }}</td>
+                                <td class="text-center">{{ facture.materiel.designation }}</td>
+                                <td class="text-center">{{ facture.materiel.qte * facture.materiel.prixUnitaire }}</td>
+                            </tr>
+                        {% else %}
+                            <tr align="center">
+                               <td>Aucun facture correspondant</td>
+                            </tr>
+                        {% endif %}
+                        
+                    {% endfor %}
+				</tbody>
+			</table>
+		{# {% else %} #}
+			{# <div class="facturation">
+				<div class="facturation__client">
+					<span>Nom du client :
+					</span>
+					<span>Addresse :
+					</span>
+				</div>
+				<div class="facturation__info">
+					<span>Facture n°</span>
+					<span>Date :
+					</span>
+					<span>Nom du département :
+					</span>
+				</div>
+			</div> #}
+	</div>
+{% endblock %}

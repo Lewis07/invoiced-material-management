@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des matériels sorties{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h3 class="text-center mt-3">Liste des matériels sorties</h3>
+        <a href="{{ path('materiel_sortie_new') }}" class="btn btn-primary mb-2">Nouveau matériel sortie</a>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Matériel</th>
+                    <th class="text-center">Quantité sortie</th>
+                    <th class="text-center">Date de sortie</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for materiel_sortie in materiel_sorties %}
+                    <tr>
+                        <td>{{ materiel_sortie.materiel.designation }}</td>
+                        <td class="text-center">{{ materiel_sortie.qteSortie }}</td>
+                        <td class="text-center">{{ materiel_sortie.dateSortie ? materiel_sortie.dateSortie|date('d/m/Y') : '' }}</td>
+                        <td>
+                            <a href="{{ path('materiel_sortie_edit', {'id': materiel_sortie.id}) }}" class="btn btn-info">Editer</a>
+                            <a href="{{ path('materiel_sortie_delete', {'id': materiel_sortie.id}) }}" class="btn btn-danger">Supprimer</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr align="center">
+                        <td colspan="4">Aucun matériel sorti</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

@@ -1,0 +1,14 @@
+.navbar ul{
+    margin: 0 auto;
+}
+
+.facturation{
+    display: flex;
+    justify-content: space-between;
+    margin : 20px;
+}
+
+.facturation__client,.facturation__info{
+    display: flex;
+    flex-direction: column;
+}
